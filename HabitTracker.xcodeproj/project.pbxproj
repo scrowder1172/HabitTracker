@@ -55,9 +55,9 @@
 			children = (
 				529E4D082AFA8DFD00A1975B /* HabitTrackerApp.swift */,
 				529E4D0A2AFA8DFD00A1975B /* ContentView.swift */,
+				529E4D162AFA90CE00A1975B /* AddHabitView.swift */,
 				529E4D0C2AFA8DFF00A1975B /* Assets.xcassets */,
 				529E4D0E2AFA8DFF00A1975B /* Preview Content */,
-				529E4D162AFA90CE00A1975B /* AddHabitView.swift */,
 			);
 			path = HabitTracker;
 			sourceTree = "<group>";
