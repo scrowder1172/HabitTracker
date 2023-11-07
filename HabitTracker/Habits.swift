@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-enum HabitType: Codable {
-    case Personal, Business, Health, School
+enum HabitType: String, Codable, CaseIterable {
+    case personal = "Personal"
+    case health = "Health"
+    case school = "School"
+    case work = "Work"
 }
 
-struct Habit: Identifiable, Codable {
+struct HabitItem: Identifiable, Codable {
     var id: UUID = UUID()
     let name: String
     let purpose: String
@@ -21,10 +24,10 @@ struct Habit: Identifiable, Codable {
 }
 
 @Observable
-class Habits {
-    var habits: [Habit] = [Habit]() {
+class Habits: Identifiable {
+    var habit: [HabitItem] = [HabitItem]() {
         didSet {
-            if let encoded = try? JSONEncoder().encode(habits) {
+            if let encoded = try? JSONEncoder().encode(habit) {
                 UserDefaults.standard.set(encoded, forKey: "Habits")
             }
         }
@@ -32,13 +35,13 @@ class Habits {
     
     init() {
         if let savedHabits = UserDefaults.standard.data(forKey: "Habits") {
-            if let decodedHabits = try? JSONDecoder().decode([Habit].self, from: savedHabits) {
-                habits = decodedHabits
+            if let decodedHabits = try? JSONDecoder().decode([HabitItem].self, from: savedHabits) {
+                habit = decodedHabits
                 return
             }
         }
         
         // return an empty array if previous habits could not be found or loaded
-        habits = []
+        habit = []
     }
 }
