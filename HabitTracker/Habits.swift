@@ -45,4 +45,9 @@ class Habits: Identifiable {
         // return an empty array if previous habits could not be found or loaded
         habit = []
     }
+    
+    func containsHabit(ofType type: HabitType) -> Bool {
+        // returns true if habit array contains the HabitType passed
+        return habit.contains { $0.type == type}
+    }
 }
