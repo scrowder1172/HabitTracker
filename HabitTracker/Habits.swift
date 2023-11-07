@@ -19,6 +19,7 @@ struct HabitItem: Identifiable, Codable {
     let name: String
     let purpose: String
     let type: HabitType
+    let targetDate: Date
     let dateAdded: Date
     let dateLastUpdated: Date
 }
