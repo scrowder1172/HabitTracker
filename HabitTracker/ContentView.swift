@@ -51,7 +51,7 @@ struct HabitSectionView: View {
                 ForEach(habits.habit) {habit in
                     if habit.type == habitType {
                         NavigationLink {
-                            Text(habit.title)
+                            HabitDetailView(habitItem: habit)
                         } label: {
                             VStack (alignment: .leading) {
                                 Text(habit.title)
@@ -64,6 +64,52 @@ struct HabitSectionView: View {
                 .onDelete(perform: onDelete)
             }
         }
+    }
+}
+
+struct HabitDetailView: View {
+    let habitItem: HabitItem
+    let longMessage: String = """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae nibh posuere, vestibulum diam sed, malesuada urna. Aenean finibus massa nisl, non faucibus arcu cursus non. Pellentesque ut placerat neque. Etiam vestibulum sapien at consectetur laoreet. Donec in quam interdum, convallis nunc at, semper lacus. Nullam viverra vestibulum sem varius.
+    """
+    var body: some View {
+        ScrollView {
+            VStack (alignment: .leading) {
+                HabitDetailTextView(text: habitItem.id.uuidString, label: "ID")
+                HabitDetailTextView(text: habitItem.title, label: "Title")
+                HabitDetailTextView(text: habitItem.description, label: "Description")
+                HabitDetailTextView(text: longMessage, label: "Lorem Ipsum")
+                HabitDetailTextView(text: habitItem.type.rawValue, label: "Type")
+                HabitDetailTextView(text: habitItem.targetDate.formatted(date: .long, time: .complete), label: "Target Date")
+                HabitDetailTextView(text: habitItem.dateAdded.formatted(date: .long, time: .complete), label: "Creation Date")
+                HabitDetailTextView(text: habitItem.dateLastUpdated.formatted(date: .long, time: .complete), label: "Last Updated")
+            }
+            .frame(maxWidth: .infinity)
+        }
+        
+    }
+}
+
+struct HabitDetailTextView: View {
+    let text: String
+    let label: String
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(Color.indigo)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(text)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(20)
+        .frame(maxWidth: .infinity, minHeight: 50)
+        .overlay(
+                    RoundedRectangle(cornerRadius: 10) // Adjust corner radius for desired curvature
+                        .stroke(Color.gray, lineWidth: 1) // Adjust border color and line width
+                )
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
     }
 }
 
