@@ -7,16 +7,24 @@
 
 import SwiftUI
 
+/// Last place: Created class and need to add class to add form to save habits
+/// wanted to use enum for drop list of habit type
+/// integrate class into add process
+
 struct ContentView: View {
-    @State private var habits: [String] = [String]()
+    @State private var habits: Habits = Habits()
     
     var body: some View {
         NavigationStack {
             
             List {
-                ForEach(habits, id: \.self) {habit in
-                    NavigationLink(habit) {
-                        Text(habit)
+                ForEach(habits.habit) {habit in
+                    NavigationLink(habit.name) {
+                        Text(habit.name)
+                        Text(habit.purpose)
+                        Text(habit.type.rawValue)
+                        Text(habit.dateAdded.formatted(date: .long, time: .shortened))
+                        Text(habit.dateLastUpdated.formatted(date: .long, time: .shortened))
                     }
                 }
                 .onDelete(perform: removeItem)
@@ -33,7 +41,7 @@ struct ContentView: View {
     }
     
     func removeItem(at offset: IndexSet) {
-        habits.remove(atOffsets: offset)
+        habits.habit.remove(atOffsets: offset)
     }
 }
 
