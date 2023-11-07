@@ -12,18 +12,28 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(habits, id: \.self) { habit in
-                Text(habit)
+            
+            List {
+                ForEach(habits, id: \.self) {habit in
+                    NavigationLink(habit) {
+                        Text(habit)
+                    }
+                }
+                .onDelete(perform: removeItem)
             }
             .navigationTitle("Habit Tracker")
             .toolbar {
                 NavigationLink {
-                    AddHabitView()
+                    AddHabitView(habits: $habits)
                 } label: {
                     Label("Add Habit", systemImage: "plus")
                 }
             }
         }
+    }
+    
+    func removeItem(at offset: IndexSet) {
+        habits.remove(atOffsets: offset)
     }
 }
 
