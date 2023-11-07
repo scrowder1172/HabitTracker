@@ -17,8 +17,10 @@ struct ContentView: View {
             }
             .navigationTitle("Habit Tracker")
             .toolbar {
-                Button("Add") {
-                    habits.append("New habit \(Int.random(in: 0...100))")
+                NavigationLink {
+                    AddHabitView()
+                } label: {
+                    Label("Add Habit", systemImage: "plus")
                 }
             }
         }
