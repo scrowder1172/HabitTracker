@@ -19,9 +19,9 @@ struct ContentView: View {
             
             List {
                 ForEach(habits.habit) {habit in
-                    NavigationLink(habit.name) {
-                        Text(habit.name)
-                        Text(habit.purpose)
+                    NavigationLink(habit.title) {
+                        Text(habit.title)
+                        Text(habit.description)
                         Text(habit.type.rawValue)
                         Text(habit.dateAdded.formatted(date: .long, time: .shortened))
                         Text(habit.dateLastUpdated.formatted(date: .long, time: .shortened))
