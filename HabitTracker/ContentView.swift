@@ -18,16 +18,10 @@ struct ContentView: View {
         NavigationStack {
             
             List {
-                ForEach(habits.habit) {habit in
-                    NavigationLink(habit.title) {
-                        Text(habit.title)
-                        Text(habit.description)
-                        Text(habit.type.rawValue)
-                        Text(habit.dateAdded.formatted(date: .long, time: .shortened))
-                        Text(habit.dateLastUpdated.formatted(date: .long, time: .shortened))
-                    }
-                }
-                .onDelete(perform: removeItem)
+                HabitSectionView(habits: habits, habitType: .personal, onDelete: removeItem)
+                HabitSectionView(habits: habits, habitType: .health, onDelete: removeItem)
+                HabitSectionView(habits: habits, habitType: .work, onDelete: removeItem)
+                HabitSectionView(habits: habits, habitType: .school, onDelete: removeItem)
             }
             .navigationTitle("Habit Tracker")
             .toolbar {
@@ -42,6 +36,27 @@ struct ContentView: View {
     
     func removeItem(at offset: IndexSet) {
         habits.habit.remove(atOffsets: offset)
+    }
+}
+
+struct HabitSectionView: View {
+    var habits: Habits
+    var habitType: HabitType
+    var onDelete: (IndexSet) -> Void
+    
+    var body: some View {
+        if habits.containsHabit(ofType: habitType) {
+            Section(habitType.rawValue) {
+                ForEach(habits.habit) {habit in
+                    if habit.type == habitType {
+                        NavigationLink(habit.title) {
+                            Text(habit.title)
+                        }
+                    }
+                }
+                .onDelete(perform: onDelete)
+            }
+        }
     }
 }
 
