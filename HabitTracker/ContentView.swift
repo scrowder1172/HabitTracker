@@ -24,6 +24,7 @@ struct ContentView: View {
                 HabitSectionView(habits: habits, habitType: .school, onDelete: removeItem)
             }
             .navigationTitle("Habit Tracker")
+            .navigationBarItems(leading: EditButton())
             .toolbar {
                 NavigationLink {
                     AddHabitView(habits: $habits)
@@ -49,8 +50,14 @@ struct HabitSectionView: View {
             Section(habitType.rawValue) {
                 ForEach(habits.habit) {habit in
                     if habit.type == habitType {
-                        NavigationLink(habit.title) {
+                        NavigationLink {
                             Text(habit.title)
+                        } label: {
+                            VStack (alignment: .leading) {
+                                Text(habit.title)
+                                Text("Target: \(habit.targetDate.formatted(date: .complete, time: .omitted))")
+                                    .font(.caption)
+                            }
                         }
                     }
                 }
