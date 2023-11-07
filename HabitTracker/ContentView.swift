@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var habits: [String] = [String]()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List(habits, id: \.self) { habit in
+                Text(habit)
+            }
+            .navigationTitle("Habit Tracker")
+            .toolbar {
+                Button("Add") {
+                    habits.append("New habit \(Int.random(in: 0...100))")
+                }
+            }
         }
-        .padding()
     }
 }
 
