@@ -13,6 +13,7 @@
 		529E4D102AFA8DFF00A1975B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529E4D0F2AFA8DFF00A1975B /* Preview Assets.xcassets */; };
 		529E4D172AFA90CE00A1975B /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E4D162AFA90CE00A1975B /* AddHabitView.swift */; };
 		529E4D192AFAAE1A00A1975B /* Habits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E4D182AFAAE1A00A1975B /* Habits.swift */; };
+		529E4D1B2AFC068500A1975B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E4D1A2AFC068500A1975B /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		529E4D0F2AFA8DFF00A1975B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		529E4D162AFA90CE00A1975B /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		529E4D182AFAAE1A00A1975B /* Habits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habits.swift; sourceTree = "<group>"; };
+		529E4D1A2AFC068500A1975B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				529E4D0A2AFA8DFD00A1975B /* ContentView.swift */,
 				529E4D162AFA90CE00A1975B /* AddHabitView.swift */,
 				529E4D182AFAAE1A00A1975B /* Habits.swift */,
+				529E4D1A2AFC068500A1975B /* Extensions.swift */,
 				529E4D0C2AFA8DFF00A1975B /* Assets.xcassets */,
 				529E4D0E2AFA8DFF00A1975B /* Preview Content */,
 			);
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529E4D1B2AFC068500A1975B /* Extensions.swift in Sources */,
 				529E4D0B2AFA8DFD00A1975B /* ContentView.swift in Sources */,
 				529E4D092AFA8DFD00A1975B /* HabitTrackerApp.swift in Sources */,
 				529E4D192AFAAE1A00A1975B /* Habits.swift in Sources */,
