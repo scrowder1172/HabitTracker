@@ -69,16 +69,13 @@ struct HabitSectionView: View {
 
 struct HabitDetailView: View {
     let habitItem: HabitItem
-    let longMessage: String = """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae nibh posuere, vestibulum diam sed, malesuada urna. Aenean finibus massa nisl, non faucibus arcu cursus non. Pellentesque ut placerat neque. Etiam vestibulum sapien at consectetur laoreet. Donec in quam interdum, convallis nunc at, semper lacus. Nullam viverra vestibulum sem varius.
-    """
+    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
                 HabitDetailTextView(text: habitItem.id.uuidString, label: "ID")
                 HabitDetailTextView(text: habitItem.title, label: "Title")
                 HabitDetailTextView(text: habitItem.description, label: "Description")
-                HabitDetailTextView(text: longMessage, label: "Lorem Ipsum")
                 HabitDetailTextView(text: habitItem.type.rawValue, label: "Type")
                 HabitDetailTextView(text: habitItem.targetDate.formatted(date: .long, time: .complete), label: "Target Date")
                 HabitDetailTextView(text: habitItem.dateAdded.formatted(date: .long, time: .complete), label: "Creation Date")
@@ -99,10 +96,11 @@ struct HabitDetailTextView: View {
                 .font(.caption)
                 .foregroundStyle(Color.indigo)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 5)
             Text(text)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(20)
+        .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, minHeight: 50)
         .overlay(
                     RoundedRectangle(cornerRadius: 10) // Adjust corner radius for desired curvature
