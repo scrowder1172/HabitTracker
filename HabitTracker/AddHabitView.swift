@@ -14,6 +14,8 @@ struct AddHabitView: View {
     @State private var creationDate: Date = Date()
     @State private var habitType: HabitType = .personal
     
+    @State private var isShowingAlert: Bool = false
+    
     @Binding var habits: Habits
     
     @Environment(\.dismiss) var dismiss
@@ -37,8 +39,12 @@ struct AddHabitView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         let newHabit: HabitItem = HabitItem(title: habitTitle, description: description, type: habitType, targetDate: targetDate, dateAdded: creationDate, dateLastUpdated: creationDate)
-                        habits.habit.append(newHabit)
-                        dismiss()
+                        if newHabit.canSave {
+                            habits.habit.append(newHabit)
+                            dismiss()
+                        } else {
+                            isShowingAlert = true
+                        }
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {
@@ -46,6 +52,11 @@ struct AddHabitView: View {
                         dismiss()
                     }
                 }
+            }
+            .alert("Error", isPresented: $isShowingAlert) {
+                Button("OK") {}
+            } message: {
+                Text("Please provide a title before saving.")
             }
         }
     }
@@ -126,12 +137,18 @@ struct HabitFormPicker<Style>: View where Style: PickerStyle{
 }
 
 struct HabitFormDatePicker: View {
+    
     @Binding var date: Date
+    
+    private var oneMonthFromNow: Date {
+            Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date()
+        }
+    
     var body: some View {
         VStack (alignment: .leading) {
             Text("Target Date")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            DatePicker("Target Date", selection: $date)
+            DatePicker("Target Date", selection: $date, in: oneMonthFromNow..., displayedComponents: .date)
                 .datePickerStyle(GraphicalDatePickerStyle())
         }
             .padding(.horizontal, 20)
