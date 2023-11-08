@@ -11,7 +11,8 @@ struct AddHabitView: View {
     @State private var habitTitle: String = ""
     @State private var description: String = ""
     @State private var targetDate: Date = Date()
-    @State private var creationDate: Date = Date()
+    private let creationDate: Date = Date()
+    private let lastUpdateDate: Date = Date()
     @State private var habitType: HabitType = .personal
     
     @State private var isShowingAlert: Bool = false
@@ -38,7 +39,7 @@ struct AddHabitView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        let newHabit: HabitItem = HabitItem(title: habitTitle, description: description, type: habitType, targetDate: targetDate, dateAdded: creationDate, dateLastUpdated: creationDate)
+                        let newHabit: HabitItem = HabitItem(title: habitTitle, description: description, type: habitType, targetDate: targetDate, dateAdded: creationDate, dateLastUpdated: lastUpdateDate)
                         if newHabit.canSave {
                             habits.habit.append(newHabit)
                             dismiss()
