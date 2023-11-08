@@ -22,6 +22,15 @@ struct HabitItem: Identifiable, Codable {
     let targetDate: Date
     let dateAdded: Date
     let dateLastUpdated: Date
+    
+    var canSave: Bool {
+        // add additional guards as needed to ensure record is complete
+        guard title.isNotEmpty else {
+            return false
+        }
+        
+        return true
+    }
 }
 
 @Observable
@@ -49,5 +58,12 @@ class Habits: Identifiable {
     func containsHabit(ofType type: HabitType) -> Bool {
         // returns true if habit array contains the HabitType passed
         return habit.contains { $0.type == type}
+    }
+}
+
+extension String {
+    // Removes the need for a double negative such as !password.trimmingCharacters(in: .whitespaces).isEmpty
+    var isNotEmpty: Bool {
+        trimmingCharacters(in: .whitespaces).isEmpty == false
     }
 }
