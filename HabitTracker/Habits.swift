@@ -61,9 +61,3 @@ class Habits: Identifiable {
     }
 }
 
-extension String {
-    // Removes the need for a double negative such as !password.trimmingCharacters(in: .whitespaces).isEmpty
-    var isNotEmpty: Bool {
-        trimmingCharacters(in: .whitespaces).isEmpty == false
-    }
-}
